@@ -1,0 +1,105 @@
+{
+    "display_information": {
+        "name": "Brain Dump Bot",
+        "description": "Automatically captures team ideas to a shared canvas"
+    },
+    "features": {
+        "app_home": {
+            "home_tab_enabled": false,
+            "messages_tab_enabled": true,
+            "messages_tab_read_only_enabled": true
+        },
+        "bot_user": {
+            "display_name": "Brain Dump Bot",
+            "always_online": false
+        },
+        "slash_commands": [
+            {
+                "command": "/braindump",
+                "description": "Manually add an idea to the brain dump canvas",
+                "usage_hint": "Your brilliant idea here",
+                "should_escape": false
+            },
+            {
+                "command": "/canvas",
+                "description": "View the team brain dump canvas",
+                "should_escape": false
+            },
+            {
+                "command": "/testcanvas",
+                "description": "Test canvas creation and debug issues",
+                "should_escape": false
+            }
+        ]
+    },
+    "oauth_config": {
+        "scopes": {
+            "bot": [
+                "chat:write",
+                "reactions:read",
+                "channels:history",
+                "files:write",
+                "files:read",
+                "canvases:write",
+                "canvases:read",
+                "commands"
+            ]
+        }
+    },
+    "settings": {
+        "event_subscriptions": {
+            "bot_events": [
+                "function_executed",
+                "reaction_added",
+                "message.channels"
+            ]
+        },
+        "interactivity": {
+            "is_enabled": true
+        },
+        "org_deploy_enabled": true,
+        "socket_mode_enabled": true,
+        "token_rotation_enabled": false,
+        "function_runtime": "remote"
+    },
+    "functions": {
+        "capture_idea": {
+            "title": "Capture Idea to Canvas",
+            "description": "Captures an idea to the team brain dump canvas",
+            "input_parameters": {
+                "message_text": {
+                    "type": "string",
+                    "title": "Message Text",
+                    "description": "The idea text to capture",
+                    "is_required": true
+                },
+                "user_id": {
+                    "type": "slack#/types/user_id",
+                    "title": "User",
+                    "description": "User who shared the idea",
+                    "is_required": true
+                },
+                "channel_id": {
+                    "type": "slack#/types/channel_id",
+                    "title": "Channel",
+                    "description": "Channel where idea was shared",
+                    "is_required": true
+                },
+                "message_ts": {
+                    "type": "string",
+                    "title": "Message Timestamp",
+                    "description": "Timestamp of the original message",
+                    "is_required": false
+                }
+            },
+            "output_parameters": {
+                "success": {
+                    "type": "boolean",
+                    "title": "Success",
+                    "description": "Whether the idea was successfully captured",
+                    "is_required": true
+                }
+            }
+        }
+    }
+}
