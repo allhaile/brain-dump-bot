@@ -1,6 +1,6 @@
 # 🧠 Brain Dump Bot
 
-A Slack app that automatically captures team ideas to a shared canvas. Built with "vibe coding" using Claude Sonnet and the Slack Developer MCP Server.
+A vibe coded Slack app that automatically captures team ideas to a shared canvas. Built with "vibe coding" using Claude Sonnet and the Slack Developer MCP Server.
 
 ## What It Does
 
